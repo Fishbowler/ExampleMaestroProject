@@ -1,0 +1,10 @@
+appId: com.fishbowler.example
+---
+
+- setAirplaneMode: disabled
+- clearKeychain
+
+- launchApp:
+    clearState: true
+
+- runScript: 'global_variables.js'

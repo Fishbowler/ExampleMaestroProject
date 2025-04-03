@@ -1,0 +1,49 @@
+appId: com.fishbowler.example
+onFlowStart:
+  - runFlow: ../utils/setup.yaml
+---
+
+- runFlow: ../utils/login.yaml
+
+- assertVisible: 'Welcome back, Test User!'
+
+- tapOn: 'Products'
+- assertVisible: 'Product Page'
+
+- assertVisible: 'Product 1'
+- tapOn: 'Product 1'
+- assertVisible: 'Product 1 Details'
+
+- tapOn: 'Add to Cart'
+- assertVisible: 'Product 1 added to cart'
+
+- tapOn: 'Cart'
+- assertVisible: 'Cart Page'
+- assertVisible: '1 item in cart'
+- assertVisible: 'Product 1'
+- assertVisible:
+    text: 'Quantity: 1'
+    below: 'Product 1'
+
+- tapOn: 'Checkout'
+- assertVisible: 'Checkout Page'
+- assertVisible: 'Order Summary'
+- assertVisible: 'Shipping Address'
+- assertVisible: 'Payment Method'
+
+# Payment Methods
+- assertVisible: 'Credit Card'
+- runFlow:
+    when:
+      platform: 'ios'
+    commands:
+      - assertVisible: 'Apple Pay'
+
+- runFlow:
+    when:
+      platform: 'android'
+    commands:
+      - assertVisible: 'Google Pay'
+
+
+- assertVisible: 'Place Order Now'

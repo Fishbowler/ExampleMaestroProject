@@ -1,0 +1,16 @@
+appId: com.fishbowler.example
+env:
+  USERNAME: ${USERNAME || 'testuser'}
+  PASSWORD: ${PASSWORD || 'testpassword'}
+---
+- tapOn:
+    id: 'username'
+- eraseText
+- inputText: ${USERNAME}
+
+- tapOn:
+    id: 'password'
+- inputText: ${PASSWORD}
+
+- tapOn:
+    id: 'login'

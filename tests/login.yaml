@@ -1,0 +1,25 @@
+appId: com.fishbowler.example
+onFlowStart:
+  - runFlow: ../utils/setup.yaml
+---
+
+- runFlow:
+    file: ../utils/login.yaml
+    env:
+      USERNAME: ${output.credentials.locked.username}
+      PASSWORD: ${output.credentials.locked.password}
+
+- assertVisible: 'This account is locked'
+
+- runFlow:
+    file: ../utils/login.yaml
+    env:
+      USERNAME: ${output.credentials.invalid.username}
+      PASSWORD: ${output.credentials.invalid.password}
+
+- assertVisible: 'Those credentials are invalid'
+
+- runFlow:
+    file: ../utils/login.yaml # Use default test credentials
+
+- assertVisible: 'Welcome back, Test User!'
