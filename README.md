@@ -1,2 +1,3 @@
 # ExampleMaestroProject
-Small example, based on imaginary app, including Good Patterns
+
+Small example, based on imaginary app, including Good Patterns for Maestro.
